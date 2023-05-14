@@ -14,6 +14,8 @@ namespace Conference_Management_System.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
+        [Required]
+        public string Author { get; set; }
         public string Conference { get; set; }
         [Required]
         public String Expertises { get; set; }

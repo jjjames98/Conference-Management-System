@@ -24,7 +24,7 @@
         {
             <tr>
                 <td>
-                    @obj.Name
+                    <a asp-controller="Conference" asp-action="View" asp-route-id="@obj.Id">@obj.Name</a>
                 </td>
             </tr>
         }
