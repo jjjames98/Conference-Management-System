@@ -11,6 +11,8 @@ namespace Conference_Management_System.Models
 
         [Key]
         public int Id { get; set; }
+        [Required] 
+        public string Name { get; set; }
         [Required]
         public string ConferenceChair { get; set; }
         [Required]
