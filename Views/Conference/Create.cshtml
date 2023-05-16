@@ -1,0 +1,46 @@
+﻿@model Conference
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@using Conference_Management_System.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<form method="post">
+	<div class="border p-3 nt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Create Conference</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="ConferenceChair"></label>
+			<input asp-for="ConferenceChair" class="form-control" value="@UserManager.GetUserAsync(User).Result?.FullName" readonly/>
+			<span asp-validation-for="ConferenceChair" class="text-danger"></span>
+
+		</div>
+		<div class="mb-3">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+
+		</div>
+		<div class="mb-3">
+			<label asp-for="Expertise"></label>
+			<input asp-for="Expertise" class="form-control" />
+			<span asp-validation-for="Expertise" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="ConferenceDate"></label>
+			<input type="date" asp-for="ConferenceDate" class="form-control" />
+			<span asp-validation-for="ConferenceDate" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+		<a asp-controller="Conference" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Back to My Conferences
+		</a>
+	</div>
+</form>

@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Conference_Management_System.Data;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Conference_Management_System.Models
 {
     public class Conference
     {
-        public Conference()
-        {
 
+		public Conference()
+        {
+       
         }
 
         [Key]

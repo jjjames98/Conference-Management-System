@@ -52,5 +52,27 @@ namespace Conference_Management_System.Controllers
 
             return View(conference);
         }
+
+
+        public IActionResult Create() 
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Conference obj) 
+        {
+            if (ModelState.IsValid) 
+            {
+                _db.Conferences.Add(obj);
+                _db.SaveChanges();
+                TempData["Success"] = "Conference added successfully";
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
+
+    
 }
