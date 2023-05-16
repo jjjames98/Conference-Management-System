@@ -1,8 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity;
+@using Conference_Management_System.Data;
+
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome @UserManager.GetUserAsync(User).Result?.FullName</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

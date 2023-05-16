@@ -1,6 +1,9 @@
 ﻿using Conference_Management_System.Data;
 using Conference_Management_System.Models;
+using System.Net.NetworkInformation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Dynamic;
 
 namespace Conference_Management_System.Controllers
@@ -8,15 +11,19 @@ namespace Conference_Management_System.Controllers
     public class ConferenceController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly SignInManager<ApplicationUser> SignInManager;
+        private readonly UserManager<ApplicationUser> UserManager;
 
-        public ConferenceController(ApplicationDbContext db)
+        public ConferenceController(ApplicationDbContext db, SignInManager<ApplicationUser> SignInManager, UserManager<ApplicationUser> UserManager)
         {
             _db = db;   
+            this.UserManager = UserManager;
+            this.SignInManager = SignInManager;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Conference> objConferenceList = _db.Conferences.ToList();
+            IEnumerable<Conference> objConferenceList = _db.Conferences.Where(c => c.ConferenceChair == UserManager.GetUserAsync(User).Result.FullName).ToList();
             return View(objConferenceList);
         }
 
