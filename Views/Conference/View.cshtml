@@ -45,7 +45,7 @@
         {
             <tr>
                 <td>
-                    @paper.Title
+                    <a asp-controller="Paper" asp-action="View" asp-route-id="@paper.Id">@paper.Title</a>
                 </td>
             </tr>
         }

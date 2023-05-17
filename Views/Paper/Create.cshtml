@@ -1,0 +1,52 @@
+﻿@model Paper
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+@using Conference_Management_System.Data;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<form method="post">
+	<div class="border p-3 nt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Create Conference</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="Author"></label>
+			<input asp-for="Author" class="form-control" value="@UserManager.GetUserAsync(User).Result?.FullName" readonly />
+			<span asp-validation-for="Author" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Title"></label>
+			<input asp-for="Title" class="form-control" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+
+		</div>
+		<div class="mb-3">
+			<label asp-for="Conference"></label>
+			<input asp-for="Conference" class="form-control" />
+			<span asp-validation-for="Conference" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Expertises"></label>
+			<input asp-for="Expertises" class="form-control" />
+			<span asp-validation-for="Expertises" class="text-danger"></span>
+		</div>
+		<div class="mb-3" hidden>
+			<label asp-for="DatePublished"></label>
+			<input type="date" asp-for="DatePublished" class="form-control" value=@DateOnly.FromDateTime(DateTime.Now) />
+			<span asp-validation-for="DatePublished" class="text-danger"></span>
+		</div>
+		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+		<a asp-controller="Paper" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Back to My Papers
+		</a>
+	</div>
+</form>
+
+

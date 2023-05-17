@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Paper>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">My Papers</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Paper" asp-action="Create" class="btn btn-primary">Create New Paper</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Paper Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Paper" asp-action="View" asp-route-id="@obj.Id">@obj.Title</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

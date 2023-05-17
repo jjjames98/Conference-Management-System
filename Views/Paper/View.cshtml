@@ -1,0 +1,79 @@
+﻿@using Conference_Management_System.Models
+@model dynamic
+@{
+    ViewData["Title"] = "View";
+}
+
+<div class="border p-3 nt-4">
+    <div class="row pb-2">
+        <div class="col-6">
+            <h2 class="text-primary">@Model.Paper.Title</h2>
+        </div>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Author
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Paper.Author
+        </dd>
+        <dt class="col-sm-2">
+            Conference
+            Conference
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Paper.Conference
+        </dd>
+        <dt class="col-sm-2">
+            Expertises
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Paper.Expertises
+        </dd>
+        <dt class="col-sm-2">
+            Date Published
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Paper.DatePublished
+        </dd>
+    </dl>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Reviewer Name
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Comments
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    @review.ReviewerName
+                </td>
+                <td>
+                    @review.Status
+                </td>
+                <td>
+                    @review.Rating
+                </td>
+                <td>
+                    @review.Comments
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
