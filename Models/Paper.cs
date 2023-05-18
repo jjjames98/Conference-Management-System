@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Nodes;
 
 namespace Conference_Management_System.Models
@@ -21,5 +22,8 @@ namespace Conference_Management_System.Models
         public String Expertises { get; set; }
         [Required]
         public DateOnly DatePublished { get; set; }
+        [Required]
+        [NotMapped]
+        public IFormFile File { get; set; }    
     }
 }

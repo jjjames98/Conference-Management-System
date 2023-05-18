@@ -37,6 +37,7 @@
             @Model.Paper.DatePublished
         </dd>
     </dl>
+    <a asp-controller="Paper" asp-action="Download" class="btn btn-primary mx-2" asp-route-id="@Model.Paper.Id">Download</a>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -54,6 +55,7 @@
             <th>
                 Comments
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

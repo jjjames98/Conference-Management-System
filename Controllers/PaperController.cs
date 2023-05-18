@@ -2,7 +2,12 @@
 using Conference_Management_System.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Dynamic;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Conference_Management_System.Controllers
 {
@@ -17,6 +22,7 @@ namespace Conference_Management_System.Controllers
             _db = db;
             this.SignInManager = SignInManager;
             this.UserManager = UserManager;
+
         }
 
         public IActionResult Index()
@@ -51,6 +57,22 @@ namespace Conference_Management_System.Controllers
 
             return View(paper);
         }
+
+        [HttpGet]
+        public IActionResult Download(int? id)
+        {
+            var obj = _db.Papers.Find(id);
+            if (obj != null)
+            {
+                string filepath = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/paper_files"), obj.Title + ".docx");
+                if (System.IO.File.Exists(filepath))
+                {
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
+                    return File(fileBytes, "application/x-msdownload", Path.GetFileName(filepath));
+                }
+            }
+            return RedirectToAction("View");
+        }
         
         public IActionResult Create() 
         { 
@@ -64,6 +86,17 @@ namespace Conference_Management_System.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+                if(obj.File != null) 
+                {
+                    string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/paper_files");
+                    string fileNameWithPath = Path.Combine(path, obj.File.FileName);
+
+                    using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                    {
+                        obj.File.CopyTo(stream);
+                    }
+				}
+
 				_db.Papers.Add(obj);
 				_db.SaveChanges();
 				TempData["Success"] = "Paper added successfully";
