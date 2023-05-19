@@ -36,7 +36,7 @@ namespace Conference_Management_System.Controllers
             // Create new object that will store paper and papers in that conference
             dynamic paper = new ExpandoObject();
 
-            if (id == null || id == 9)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
