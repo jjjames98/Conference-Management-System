@@ -38,6 +38,10 @@
             <th>
                 Paper Title
             </th>
+            <th>
+                Author
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +50,13 @@
             <tr>
                 <td>
                     <a asp-controller="Paper" asp-action="View" asp-route-id="@paper.Id">@paper.Title</a>
+                </td>
+                <td>
+                    @paper.Author
+                </td>
+                <td>
+                    <a asp-controller="Conference" asp-action="Decline" asp-route-id="@paper.Id"
+                    class="btn btn-danger" style="width:150px">Decline</a>
                 </td>
             </tr>
         }

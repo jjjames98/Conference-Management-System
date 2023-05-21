@@ -104,10 +104,5 @@ namespace Conference_Management_System.Controllers
 			}
 			return View(obj);
 		}
-
-        public IActionResult Back()
-        {
-            return Redirect(Request.Headers["Referer"].ToString());
-        }
 	}
 }

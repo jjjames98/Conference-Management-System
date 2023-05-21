@@ -72,6 +72,26 @@ namespace Conference_Management_System.Controllers
             }
             return View(obj);
         }
+
+        // Decline the paper from the conference
+        public IActionResult Decline(int? id) 
+        { 
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var paper = _db.Papers.Find(id);
+
+            if (paper != null) 
+            {
+                paper.Conference = "None";
+                _db.SaveChanges();
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+
+            return View();
+        }
     }
 
     
