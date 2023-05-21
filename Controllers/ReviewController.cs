@@ -61,5 +61,50 @@ namespace Conference_Management_System.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var reviewFromDb = _db.Reviews.Find(id);
+
+            if (reviewFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(reviewFromDb);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditSave(Review obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Reviews.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Review updated successfully";
+                return RedirectToAction("Index");
+            }
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditSubmit(Review obj)
+        {
+            if (ModelState.IsValid)
+            {
+                obj.Status = "Completed";
+                _db.Reviews.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Review submitted";
+                return RedirectToAction("Index");
+            }
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
     }
 }

@@ -80,7 +80,51 @@
                         @review.Comments
                     </td>
                     <td>
-                        <a asp-controller="Review" asp-action="Edit" class="btn btn-primary mx-2" asp-route-id="@review.Id">Edit Review</a>
+                        <a asp-controller="Review" asp-action="Edit" class="btn btn-primary mx-2" asp-route-id="@review.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Completed reviews</h2>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Paper Title
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Comments
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            @if (review.Status == "Completed")
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Paper" asp-action="View" asp-route-id="@review.Paper">@_db.Papers.Find(review.Paper).Title</a>
+                    </td>
+                    <td>
+                        @review.Rating
+                    </td>
+                    <td>
+                        @review.Comments
                     </td>
                 </tr>
             }

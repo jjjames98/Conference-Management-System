@@ -51,7 +51,7 @@ namespace Conference_Management_System.Controllers
             paper.Paper = paperFromDb;
 
             //Get papers where the name of the conference matches the name of the conference the papers are assigned to
-            var reviewsOfPaper = _db.Reviews.Where(r => r.Paper == id).ToList();
+            var reviewsOfPaper = _db.Reviews.Where(r => r.Paper == id).ToList().Where(r => r.Status == "Completed").ToList();
 
             paper.Reviews = reviewsOfPaper;
 
@@ -104,5 +104,10 @@ namespace Conference_Management_System.Controllers
 			}
 			return View(obj);
 		}
+
+        public IActionResult Back()
+        {
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
 	}
 }

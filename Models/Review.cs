@@ -6,7 +6,7 @@ namespace Conference_Management_System.Models
     {
         public Review()
         {
-            Status = "Assigned";
+
         }
 
         [Key]

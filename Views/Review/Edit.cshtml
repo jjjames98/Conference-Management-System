@@ -1,0 +1,31 @@
+﻿@model Review
+
+<form method="post">
+	<div class="border p-3 nt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Edit Review</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<input asp-for="Id" class="form-control" hidden/>
+		<input asp-for="ReviewerName" class="form-control" hidden/>
+		<input asp-for="Paper" class="form-control" hidden />
+		<div class="mb-3">
+			<label asp-for="Rating"></label>
+			<input asp-for="Rating" class="form-control" />
+			<span asp-validation-for="Rating" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Comments"></label>
+			<input asp-for="Comments" class="form-control" />
+			<span asp-validation-for="Comments" class="text-danger"></span>
+		</div>
+		<input asp-for="Status" class="form-control" hidden/>
+		<button type="submit" class="btn btn-primary" asp-action="EditSave" style="width:150px">Save</button>
+		<button type="submit" class="btn btn-primary" asp-action="EditSubmit" style="width:150px">Submit</button>
+		<a asp-controller="Review" asp-action="Index" class="btn btn-secondary" style="width:150px">
+			Back
+		</a>
+	</div>
+</form>
+
