@@ -37,46 +37,47 @@
         </dd>
     </dl>
     <a asp-controller="Paper" asp-action="Download" class="btn btn-primary mx-2" asp-route-id="@Model.Paper.Id">Download</a>
-</div>
-
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                Reviewer Name
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Rating
-            </th>
-            <th>
-                Comments
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var review in Model.Reviews)
-        {
-            <tr>
-                <td>
-                    @review.ReviewerName
-                </td>
-                <td>
-                    @review.Status
-                </td>
-                <td>
-                    @review.Rating
-                </td>
-                <td>
-                    @review.Comments
-                </td>
+    <br />
+    <br />
+    <table class="table-bordered table-striped" width="100%">
+        <thead>
+            <tr class="table-info">
+                <th width="25%">
+                    Reviewer Name
+                </th>
+                <th width="15%">
+                    Status
+                </th>
+                <th width="5%">
+                    Rating
+                </th>
+                <th>
+                    Comments
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var review in Model.Reviews)
+            {
+                <tr>
+                    <td>
+                        @review.ReviewerName
+                    </td>
+                    <td>
+                        @review.Status
+                    </td>
+                    <td>
+                        @review.Rating
+                    </td>
+                    <td>
+                        @review.Comments
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
 <a href="javascript:history.go(-1)" class="btn btn-secondary" style="width:150px">
     Back
 </a>

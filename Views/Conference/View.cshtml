@@ -7,7 +7,7 @@
 <div class="border p-3 nt-4">
 	<div class="row pb-2">
         <div class="col-6">
-		    <h2 class="text-primary">@Model.Conference.Name)</h2>
+		    <h2 class="text-primary">@Model.Conference.Name</h2>
 		</div>
     </div>
     <dl class="row">
@@ -30,38 +30,40 @@
             @Model.Conference.ConferenceDate
         </dd>
     </dl>
+
+    <table class="table-bordered table-striped" width="100%">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    Paper Title
+                </th>
+                <th width="25%">
+                    Author
+                </th>
+                <th width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var paper in Model.Papers)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Paper" asp-action="View" asp-route-id="@paper.Id">@paper.Title</a>
+                    </td>
+                    <td>
+                        @paper.Author
+                    </td>
+                    <td>
+                        <a asp-controller="Conference" asp-action="Decline" asp-route-id="@paper.Id"
+                           class="btn btn-danger" style="width:150px">Decline</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>
-                Paper Title
-            </th>
-            <th>
-                Author
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var paper in Model.Papers)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="Paper" asp-action="View" asp-route-id="@paper.Id">@paper.Title</a>
-                </td>
-                <td>
-                    @paper.Author
-                </td>
-                <td>
-                    <a asp-controller="Conference" asp-action="Decline" asp-route-id="@paper.Id"
-                    class="btn btn-danger" style="width:150px">Decline</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
 
 <a href="javascript:history.go(-1)" class="btn btn-secondary" style="width:150px">
     Back

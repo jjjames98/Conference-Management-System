@@ -15,11 +15,14 @@
     </div>
 </div>
 
-<table class="table table-bordered table-striped">
+<table class="table-bordered table-striped" width="100%">
     <thead>
-        <tr>
+        <tr class="table-info">
             <th>
                 Conference Name
+            </th>
+            <th width="15%">
+                Conference Date
             </th>
         </tr>
     </thead>
@@ -29,6 +32,9 @@
             <tr>
                 <td>
                     <a asp-controller="Conference" asp-action="View" asp-route-id="@obj.Id">@obj.Name</a>
+                </td>
+                <td>
+                    @obj.ConferenceDate
                 </td>
             </tr>
         }
