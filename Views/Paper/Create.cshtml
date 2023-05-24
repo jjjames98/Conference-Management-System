@@ -29,8 +29,9 @@
 		</div>
 		<div class="mb-3">
 			<label asp-for="Conference"></label>
-			<input asp-for="Conference" class="form-control" />
-			<span asp-validation-for="Conference" class="text-danger"></span>
+			<!--input asp-for="Conference" class="form-control" />
+			<span-- asp-validation-for="Conference" class="text-danger"></span-->
+			@Html.DropDownList("Conference", (SelectList)ViewBag.Conferences, new { @id = "Conference", @class = "form-control" })
 		</div>
 		<div class="mb-3">
 			<label asp-for="Expertises"></label>

@@ -2,6 +2,7 @@
 using Conference_Management_System.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Dynamic;
@@ -76,6 +77,8 @@ namespace Conference_Management_System.Controllers
         
         public IActionResult Create() 
         { 
+            var conferences = _db.Conferences.ToList().AsEnumerable();
+            ViewBag.Conferences = new SelectList(conferences, "Name", "Name");
             return View();
         }
 
